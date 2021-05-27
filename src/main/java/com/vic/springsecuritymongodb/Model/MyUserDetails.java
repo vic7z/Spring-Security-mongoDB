@@ -1,43 +1,40 @@
-package com.vic.springsecuritymongodb.SecurityConfig;
+package com.vic.springsecuritymongodb.Model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 public class MyUserDetails implements UserDetails {
-    private String UserName;
+
+    private User user;
     @Autowired
     private final PasswordEncoder passwordEncoder;
 
-
-    public MyUserDetails(String userName) {
-        this(userName, new BCryptPasswordEncoder(10));
+    public MyUserDetails(User user) {
+        this(user,new BCryptPasswordEncoder(10));
     }
-
-    public MyUserDetails(String userName, PasswordEncoder passwordEncoder) {
-        this.UserName = userName;
-        this.passwordEncoder = passwordEncoder;
+    public MyUserDetails(User user, PasswordEncoder passwordEncoder){
+        this.user=user;
+        this.passwordEncoder=passwordEncoder;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        return user.getRole().getAuthorities();
     }
 
     @Override
     public String getPassword() {
-        return passwordEncoder.encode("pass");
+        return passwordEncoder.encode(user.getPassword());
     }
 
     @Override
     public String getUsername() {
-        return UserName;
+        return this.user.getName();
     }
 
     @Override
@@ -57,6 +54,6 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.user.getIsActive();
     }
 }
