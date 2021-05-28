@@ -11,15 +11,12 @@ import java.util.Collection;
 public class MyUserDetails implements UserDetails {
 
     private User user;
-    @Autowired
-    private final PasswordEncoder passwordEncoder;
 
-    public MyUserDetails(User user) {
-        this(user,new BCryptPasswordEncoder(10));
-    }
-    public MyUserDetails(User user, PasswordEncoder passwordEncoder){
+
+
+    public MyUserDetails(User user){
         this.user=user;
-        this.passwordEncoder=passwordEncoder;
+
     }
 
     @Override
@@ -29,7 +26,7 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return passwordEncoder.encode(user.getPassword());
+        return user.getPassword();
     }
 
     @Override
