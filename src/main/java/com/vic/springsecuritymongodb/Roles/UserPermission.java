@@ -6,7 +6,7 @@ public enum UserPermission {
     Course_Write("course:write"),
     Course_Read("course:read");
 
-    private String userPermission;
+    private final String userPermission;
     UserPermission(String userPermission) {
         this.userPermission=userPermission;
     }

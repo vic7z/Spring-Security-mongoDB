@@ -12,12 +12,14 @@ import java.util.List;
 
 @Service
 public class AppService {
-    @Autowired
+
     private final StudentRepo studentRepo;
 
+    @Autowired
     public AppService(StudentRepo studentRepo) {
         this.studentRepo = studentRepo;
     }
+
     public ResponseEntity<List<Student>> getAllStudents(){
         List<Student> students=studentRepo.findAll();
         if(students.isEmpty()){
@@ -44,5 +46,42 @@ public class AppService {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
     }
+
+    public ResponseEntity<Student> getStudent(String name){
+        Student student= studentRepo.findStudentByName(name).orElse(null);
+        if(student !=null){
+            return ResponseEntity.ok(student);
+        }else{
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+    }
+
+    public ResponseEntity<Void> addStudent(Student student){
+        this.studentRepo.save(student);
+        return ResponseEntity.ok().build();
+    }
+
+    public ResponseEntity<Student> updateStudent(Student student){
+//        Student student1=this.studentRepo.findById(id).orElse(null);
+//        if (student1!=null){
+             this.studentRepo.save(student);
+
+            return ResponseEntity.ok(student);
+//        }else {
+//            return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+//        }
+    }
+
+    public ResponseEntity<Void> deleteStudent(String id){
+        Student student1=this.studentRepo.findById(id).orElse(null);
+        if (student1!=null){
+           this.studentRepo.delete(student1);
+            return ResponseEntity.ok().build();
+        }else {
+            return  ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+    }
+
+
 
 }

@@ -2,7 +2,6 @@ package com.vic.springsecuritymongodb.Model;
 
 
 import com.vic.springsecuritymongodb.Roles.ApplicationRole;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;

@@ -1,16 +1,14 @@
 package com.vic.springsecuritymongodb.Model;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 import java.util.Collection;
 
 public class MyUserDetails implements UserDetails {
 
-    private User user;
+    private final User user;
 
 
 

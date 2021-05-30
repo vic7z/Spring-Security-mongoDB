@@ -5,7 +5,6 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class Student {
         courseList=new ArrayList<>();
     }
 
-    public Student(String name, int standard, List courseList) {
+    public Student(String name, int standard, List<Course> courseList) {
         this.name=name;
         this.Standard=standard;
         this.courseList=courseList;

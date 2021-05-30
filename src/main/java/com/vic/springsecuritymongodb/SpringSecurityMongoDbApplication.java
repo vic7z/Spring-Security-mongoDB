@@ -13,7 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @SpringBootApplication
 public class SpringSecurityMongoDbApplication implements CommandLineRunner {
@@ -35,14 +34,16 @@ public class SpringSecurityMongoDbApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
 //        userRepo.deleteAll();
 //        userRepo.save(new User("vic",passwordEncoder.encode("pass"),true, ApplicationRole.ADMIN));
 //        userRepo.save(new User("vin", passwordEncoder.encode("pass1"), true, ApplicationRole.STUDENT));
-          studentRepo.save(new Student("vic",12,new ArrayList<Course>(){{
-              add(new Course("12","hello"));
-
-          }}
-        )
-        );
+//        studentRepo.deleteAll();
+//        studentRepo.save(new Student("vic",12,new ArrayList<Course>(){{
+//              add(new Course("12","hello"));
+//
+//          }}
+//        )
+//        );
     }
 }
