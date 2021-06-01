@@ -23,6 +23,7 @@ public enum ApplicationRole {
         return permissions;
     }
 
+    @org.jetbrains.annotations.NotNull
     public Set<SimpleGrantedAuthority> getAuthorities(){
         Set<SimpleGrantedAuthority> simpleGrantedAuthorities=this.getPermissions().stream()
                 .map(permissions ->new SimpleGrantedAuthority(permissions.getUserPermission()))
